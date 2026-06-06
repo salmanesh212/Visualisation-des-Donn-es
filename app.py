@@ -329,7 +329,7 @@ def chart_histogram(df, x, cfg, title):
     fig = px.histogram(df, x=x, nbins=30, color_discrete_sequence=[cfg["primary"]],
                        marginal="box")
     if cfg["show_values"]:
-        fig.update_traces(texttemplate="%{y}", textposition="outside")
+        fig.update_traces(texttemplate="%{y}", textposition="outside", selector=dict(type="histogram"))
     return _base(fig, cfg, title)
 
 
