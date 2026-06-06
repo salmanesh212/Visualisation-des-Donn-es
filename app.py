@@ -646,6 +646,10 @@ def generate_pdf_report(
     except ImportError:
         return None
 
+    def safe_txt(txt):
+        """Encode en latin-1 pour éviter les crashs FPDFUnicodeEncodingException avec Helvetica."""
+        return str(txt).encode("latin-1", "replace").decode("latin-1")
+
     pdf = FPDF()
     pdf.set_auto_page_break(auto=True, margin=15)
 
@@ -678,7 +682,7 @@ def generate_pdf_report(
         f"Completude : {100 * (1 - df.isnull().sum().sum() / max(df.size, 1)):.1f} %",
     ]
     for line in info_lines:
-        pdf.cell(0, 7, line, ln=True)
+        pdf.cell(0, 7, safe_txt(line), ln=True)
 
     # --- Profiling ---
     pdf.ln(6)
@@ -689,7 +693,7 @@ def generate_pdf_report(
     headers = ["Nom", "Type", "Uniques", "Manq.", "% Manq.", "Min", "Max", "Moy", "Med", "Std"]
     col_widths = [30, 20, 14, 14, 14, 18, 18, 18, 18, 18]
     for h, w in zip(headers, col_widths):
-        pdf.cell(w, 7, h, border=1, align="C")
+        pdf.cell(w, 7, safe_txt(h), border=1, align="C")
     pdf.ln()
     pdf.set_font("Helvetica", "", 7)
     for _, row in profiling_table.iterrows():
@@ -706,7 +710,7 @@ def generate_pdf_report(
             str(row["Écart-type"]),
         ]
         for v, w in zip(vals, col_widths):
-            pdf.cell(w, 6, v, border=1, align="C")
+            pdf.cell(w, 6, safe_txt(v), border=1, align="C")
         pdf.ln()
 
     # --- Statistiques ---
@@ -720,13 +724,13 @@ def generate_pdf_report(
         desc_headers = ["Variable"] + [str(c) for c in desc.columns]
         dw = [30] + [20] * len(desc.columns)
         for h, w in zip(desc_headers, dw):
-            pdf.cell(w, 7, h, border=1, align="C")
+            pdf.cell(w, 7, safe_txt(h), border=1, align="C")
         pdf.ln()
         pdf.set_font("Helvetica", "", 7)
         for idx, row_data in desc.iterrows():
-            pdf.cell(30, 6, str(idx)[:18], border=1, align="C")
+            pdf.cell(30, 6, safe_txt(str(idx)[:18]), border=1, align="C")
             for c in desc.columns:
-                pdf.cell(20, 6, f"{row_data[c]:.2f}", border=1, align="C")
+                pdf.cell(20, 6, safe_txt(f"{row_data[c]:.2f}"), border=1, align="C")
             pdf.ln()
 
     # --- Valeurs manquantes ---
@@ -737,7 +741,7 @@ def generate_pdf_report(
     pdf.set_font("Helvetica", "", 11)
     for insight in generate_missing_insights(df):
         clean = insight.replace("**", "").replace("⚠️", "").replace("📊", "").replace("🔴", "").replace("✅", "").replace("—", "-")
-        pdf.multi_cell(0, 7, clean)
+        pdf.multi_cell(0, 7, safe_txt(clean))
         pdf.ln(2)
 
     # --- Correlations ---
@@ -749,7 +753,7 @@ def generate_pdf_report(
         pdf.set_font("Helvetica", "", 11)
         for insight in generate_corr_insights(corr_matrix):
             clean = insight.replace("**", "").replace("📈", "").replace("📉", "").replace("—", "-")
-            pdf.multi_cell(0, 7, clean)
+            pdf.multi_cell(0, 7, safe_txt(clean))
             pdf.ln(2)
 
     return bytes(pdf.output())
