@@ -1,6 +1,7 @@
-# 📊 Analyse et Visualisation Interactive de Données
+# 📊 Analyse et Visualisation Interactive de Données — Version Pro
 
-Application web professionnelle de **Data Science** développée avec **Streamlit**, permettant l'analyse exploratoire et la visualisation interactive de jeux de données (CSV / Excel).
+Application web professionnelle de **Data Analytics** développée avec **Streamlit**.  
+Véritable mini **Power BI / Tableau** en Python, adaptée à une soutenance universitaire.
 
 > Projet universitaire — ESITH
 
@@ -8,17 +9,65 @@ Application web professionnelle de **Data Science** développée avec **Streamli
 
 ## ✨ Fonctionnalités
 
+### 📋 Import & Détection
 | Fonctionnalité | Description |
 |---|---|
-| 📂 Import de fichiers | CSV et Excel (`.xlsx`) |
-| 🔍 Détection automatique | Classification des colonnes en *Quantitative*, *Qualitative* ou *Temporelle* |
-| 📊 Visualisations interactives | Histogramme, Bar Chart, Scatter Plot, Box Plot, Line Chart |
-| 🤖 Suggestion automatique | Le graphique le plus adapté est proposé selon les types de variables |
-| 🔎 Filtres dynamiques | Multiselect, sliders, sélection de dates |
-| 📈 Statistiques descriptives | `describe()`, valeurs manquantes, corrélations |
-| 🔗 Matrice de corrélation | Heatmap interactive (Plotly) |
-| ⬇️ Export | Téléchargement des données filtrées (CSV) et du graphique (PNG) |
-| 🎨 Interface moderne | Thème sombre, KPI, onglets, animations CSS |
+| 📂 Import | CSV et Excel (`.xlsx`) |
+| 🔍 Détection auto | Quantitative / Qualitative / Temporelle |
+| 🏷️ KPI dynamiques | Lignes, colonnes, complétude, manquantes |
+
+### 📋 Profiling Dataset
+- Analyse automatique colonne par colonne
+- Nom, type, uniques, manquantes, min, max, moyenne, médiane, écart-type
+- Tableau interactif avec tri et recherche
+
+### 🧹 Qualité des Données
+- Tableau des valeurs manquantes trié par % décroissant
+- Bar Chart interactif des % manquants
+- Heatmap des motifs de données manquantes
+- Synthèse automatique avec insights en langage naturel
+
+### 🔗 Corrélations Avancées
+- Heatmap interactive avec zoom et hover
+- Top corrélations positives et négatives
+- Classification : forte (|r|>0.7), modérée, faible
+- Insights automatiques
+
+### 📊 16 Types de Graphiques
+| Graphique | Usage |
+|---|---|
+| Histogramme | Variable quantitative |
+| Histogramme + KDE | Quantitative + densité |
+| Bar Chart | Variable qualitative |
+| Pie Chart | Répartition qualitative |
+| Donut Chart | Répartition moderne |
+| Scatter Plot | Quant × Quant |
+| Bubble Chart | Quant × Quant + taille + couleur |
+| Box Plot | Qual × Quant |
+| Violin Plot | Distribution + densité |
+| Strip Plot | Dispersion individuelle |
+| Line Chart | Séries temporelles |
+| Area Chart | Évolution temporelle |
+| Scatter Matrix | Multi-variables |
+| Treemap | Hiérarchie catégorielle |
+| Sunburst | Hiérarchie circulaire |
+
+### 🎨 Personnalisation Complète
+- **7 thèmes** : Plotly Dark, Plotly, Plotly White, GGPlot2, Seaborn, Presentation, Simple White
+- **Dimensions** : hauteur, largeur fixe optionnelle
+- **Couleurs** : 8 palettes + color pickers
+- **Axes** : titres personnalisés, rotation des labels
+- **Légende** : afficher/masquer, position (Top/Bottom/Left/Right)
+- **Grille** : afficher/masquer
+- **Étiquettes** : valeurs, pourcentages
+
+### 📥 Export Complet
+| Format | Contenu |
+|---|---|
+| CSV | Données filtrées, profiling, statistiques, corrélations |
+| Excel | Données filtrées |
+| PNG / SVG / JPEG / PDF | Graphiques individuels |
+| Rapport PDF | Analyse complète automatique |
 
 ---
 
@@ -26,14 +75,15 @@ Application web professionnelle de **Data Science** développée avec **Streamli
 
 - **Python 3.9+**
 - [Streamlit](https://streamlit.io/)
-- [Pandas](https://pandas.pydata.org/)
-- [NumPy](https://numpy.org/)
+- [Pandas](https://pandas.pydata.org/) & [NumPy](https://numpy.org/)
 - [Plotly Express](https://plotly.com/python/plotly-express/)
 - [Openpyxl](https://openpyxl.readthedocs.io/)
+- [Kaleido](https://github.com/plotly/Kaleido) (export images)
+- [fpdf2](https://py-pdf.github.io/fpdf2/) (rapport PDF)
 
 ---
 
-## 🚀 Installation & Exécution locale
+## 🚀 Installation & Exécution
 
 ### 1. Cloner le dépôt
 
@@ -42,12 +92,12 @@ git clone https://github.com/<votre-utilisateur>/<votre-repo>.git
 cd <votre-repo>
 ```
 
-### 2. Créer un environnement virtuel (recommandé)
+### 2. Environnement virtuel (recommandé)
 
 ```bash
 python -m venv venv
-source venv/bin/activate   # Linux / macOS
-venv\Scripts\activate      # Windows
+venv\Scripts\activate        # Windows
+source venv/bin/activate     # Linux / macOS
 ```
 
 ### 3. Installer les dépendances
@@ -56,60 +106,46 @@ venv\Scripts\activate      # Windows
 pip install -r requirements.txt
 ```
 
-### 4. Lancer l'application
+### 4. Lancer
 
 ```bash
 streamlit run app.py
 ```
 
-L'application s'ouvrira automatiquement dans votre navigateur à l'adresse :  
-`http://localhost:8501`
+→ Ouvrir **http://localhost:8501**
 
 ---
 
 ## ☁️ Déploiement sur Streamlit Cloud
 
-### Étapes
-
-1. **Pousser le code** sur un dépôt GitHub public contenant :
-   - `app.py`
-   - `requirements.txt`
-
-2. Se rendre sur [share.streamlit.io](https://share.streamlit.io/)
-
-3. Cliquer sur **« New app »**
-
-4. Renseigner :
-   - **Repository** : `<votre-utilisateur>/<votre-repo>`
-   - **Branch** : `main`
-   - **Main file path** : `app.py`
-
-5. Cliquer sur **Deploy** 🚀
-
-> L'application sera accessible via une URL publique de type :  
-> `https://<votre-app>.streamlit.app`
+1. Pousser sur GitHub : `app.py`, `requirements.txt`
+2. Aller sur [share.streamlit.io](https://share.streamlit.io/)
+3. **New app** → sélectionner le repo, branche `main`, fichier `app.py`
+4. **Deploy** 🚀
 
 ---
 
-## 📁 Structure du projet
+## 📁 Structure
 
 ```
-.
-├── app.py               # Application Streamlit principale
-├── requirements.txt     # Dépendances Python
-└── README.md            # Ce fichier
+├── app.py               # Application principale (~900 lignes)
+├── requirements.txt     # Dépendances
+└── README.md            # Documentation
 ```
 
 ---
 
-## 📸 Aperçu
+## 📸 Onglets
 
-Après import d'un fichier :
-
-- **Onglet Données** — Aperçu du dataset, dimensions, types détectés
-- **Onglet Analyse** — Valeurs manquantes, matrice de corrélation
-- **Onglet Visualisation** — Graphiques interactifs avec choix automatique ou manuel
-- **Onglet Statistiques** — Résumé statistique complet
+| Onglet | Contenu |
+|---|---|
+| 📋 Données | Aperçu, dimensions, types |
+| 📋 Profiling | Analyse colonne par colonne |
+| 🧹 Qualité | Valeurs manquantes, heatmap, insights |
+| 🔗 Corrélations | Heatmap, top +/−, classification |
+| 📊 Visualisation | 16 graphiques interactifs |
+| 📈 Statistiques | Résumé descriptif complet |
+| 📥 Export | CSV, Excel, images, rapport PDF |
 
 ---
 
@@ -120,5 +156,5 @@ Projet académique — usage éducatif uniquement.
 ---
 
 <p align="center">
-  Développé avec ❤️ en Python · Streamlit · Plotly · Pandas
+  Développé avec ❤️ · Python · Streamlit · Plotly · Pandas
 </p>
