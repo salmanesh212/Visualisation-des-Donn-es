@@ -1471,8 +1471,7 @@ def main():
     st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
     st.markdown(
         '<div style="text-align:center;color:#8892b0;font-size:0.8rem;padding-bottom:1rem;">'
-        'Développé avec ❤️ en Python · Streamlit · Plotly · Pandas &nbsp;|&nbsp; '
-        'Projet universitaire — © 2026</div>',
+        'Done by BoyWonder 🐦</div>',
         unsafe_allow_html=True,
     )
 
