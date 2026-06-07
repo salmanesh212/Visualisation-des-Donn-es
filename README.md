@@ -1,7 +1,7 @@
-# 📊 Analyse et Visualisation Interactive de Données — Version Pro
+# 📊 Analyse et Visualisation Interactive de Données 
 
 Application web professionnelle de **Data Analytics** développée avec **Streamlit**.  
-Véritable mini **Power BI / Tableau** en Python, adaptée à une soutenance universitaire.
+Véritable mini **Power BI / Tableau** en Python .
 
 > Projet universitaire — ESITH | Done by BoyWonder 🐦
 
