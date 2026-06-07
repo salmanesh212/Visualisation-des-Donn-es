@@ -258,7 +258,7 @@ Projet universitaire — ESITH 2026
 
 ## 👤 Développé par
 
-**BoyWonder** 🐦
+**Done by BoyWonder** 🐦
 
 ---
 
@@ -268,29 +268,3 @@ Pour des bugs ou suggestions :
 - Consultez le code source (`app.py`)
 - Vérifiez les dépendances (`requirements.txt`)
 - Relancez l'application en mode debug
-
----
-
-**Version** : 2.0 Pro  
-**Dernière mise à jour** : Juin 2026  
-**Statut** : Stable ✅
-|---|---|
-| 📋 Données | Aperçu, dimensions, types |
-| 📋 Profiling | Analyse colonne par colonne |
-| 🧹 Qualité | Valeurs manquantes, heatmap, insights |
-| 🔗 Corrélations | Heatmap, top +/−, classification |
-| 📊 Visualisation | 16 graphiques interactifs |
-| 📈 Statistiques | Résumé descriptif complet |
-| 📥 Export | CSV, Excel, images, rapport PDF |
-
----
-
-## 📝 Licence
-
-Projet académique — usage éducatif uniquement.
-
----
-
-<p align="center">
-  Développé by BoyWonder 🐦· Python · Streamlit · Plotly · Pandas
-</p>
